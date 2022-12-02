@@ -1,5 +1,5 @@
 import { Browser, BrowserContextOptions, Page } from 'playwright-core';
-import { SHOW_BROWSER } from './env';
+import { PROXY, SHOW_BROWSER } from './env';
 import {
   disableRtc,
   generateFingerprint,
@@ -67,7 +67,7 @@ async function launchPlaywright(args: { proxy: boolean, config: BrowserContextOp
 }
 
 launchPlaywright({
-  proxy: true,
+  proxy: !!PROXY?.uri,
   loginUrl: 'https://www.airbnb.com/login',
   config: {},
 });

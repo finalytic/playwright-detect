@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@cliqz/adblocker-playwright": "^1.25.1",
+    "dotenv": "^16.0.3",
     "fingerprint-generator": "1.0.0",
     "fingerprint-injector": "1.0.0",
     "ghost-cursor": "^1.1.16",
