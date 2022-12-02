@@ -15,7 +15,7 @@ async function launchPlaywright(args: { proxy: boolean, config: BrowserContextOp
   let tz: string | undefined;
 
   if (args.proxy) {
-    const fastProxy = await getFastestProxy('de', 5);
+    const fastProxy = await getFastestProxy(PROXY.country, 5);
     if (!fastProxy) throw new Error('No proxy found');
     console.log('Creating browser using proxy');
     const parsed = new URL(fastProxy?.proxy);
@@ -33,7 +33,7 @@ async function launchPlaywright(args: { proxy: boolean, config: BrowserContextOp
     headless: !SHOW_BROWSER,
     proxy,
   });
-  const { attach, fingerprint } = generateFingerprint('de-DE');
+  const { attach, fingerprint } = generateFingerprint(PROXY.locale);
   console.log(fingerprint)
   const context = await browser.newContext({
     userAgent: fingerprint.userAgent,
