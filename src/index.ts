@@ -8,7 +8,7 @@ import {
   proxyTest,
 } from './utils';
 import { chromium } from 'playwright-extra';
-import { getFastestProxy } from './proxy';
+import { getFastestProxy, ipInfo } from './proxy';
 
 async function launchPlaywright(args: { proxy: boolean, config: BrowserContextOptions, loginUrl: string }) {
   let proxy: BrowserContextOptions['proxy'] = undefined;
@@ -27,7 +27,11 @@ async function launchPlaywright(args: { proxy: boolean, config: BrowserContextOp
       password: parsed.password,
     };
     tz = fastProxy?.response.geo.tz;
-    console.log('Proxy:', proxy);
+    console.log('Proxy used', proxy);
+  } else {
+    const info = await ipInfo()
+    tz = info?.geo.tz;
+    console.log('No proxy used, timezone:', tz);
   }
   const browser: Browser = await chromium.launch({
     headless: !SHOW_BROWSER,

@@ -25,7 +25,8 @@ function raceToSuccess<T = unknown>(
     )
   );
 }
-async function ipInfo(proxy?: string, signal?: AbortSignal) {
+
+export async function ipInfo(proxy?: string, signal?: AbortSignal) {
   const url = proxy ? new URL(proxy) : undefined;
   const agent: any = url
     ? createAgent({
