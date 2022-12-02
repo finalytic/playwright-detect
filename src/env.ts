@@ -6,6 +6,7 @@ export const IS_FLY = FLY_ALLOC_ID !== undefined;
 
 export const PROXY = {
   uri: process.env.PROXY,
+  locale: 'en-US',
+  // CHANGE this if no proxy is used to your country code
   country: 'de',
-  locale: 'de-DE',
 }
